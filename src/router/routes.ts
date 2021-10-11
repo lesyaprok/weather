@@ -1,8 +1,8 @@
 import { RouteConfig } from "vue-router";
-import CurrentWeather from '../view/CurrentWeather.vue';
-import WeekWeather from '../view/WeekWeather.vue';
-import MonthWeather from '../view/MonthWeather.vue';
-import Maps from '../view/Maps.vue';
+import CurrentWeather from '../views/CurrentWeather.vue';
+import WeekWeather from '../views/WeekWeather.vue';
+import MonthWeather from '../views/MonthWeather.vue';
+import Maps from '../views/Maps.vue';
 
 export const routes: Array<RouteConfig> = [
   {

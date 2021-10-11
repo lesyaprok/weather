@@ -1,28 +1,27 @@
 import { RouteConfig } from "vue-router";
-import CurrentWeather from '../views/CurrentWeather.vue';
-import WeekWeather from '../views/WeekWeather.vue';
-import MonthWeather from '../views/MonthWeather.vue';
-import Maps from '../views/Maps.vue';
 
-export const routes: Array<RouteConfig> = [
+const routeOptions = [
   {
     path: '/',
     name: 'CurrentWeather',
-    component: CurrentWeather,
   },
   {
     path: '/week',
     name: 'WeekWeather',
-    component: WeekWeather,
   },
   {
     path: '/month',
     name: 'MonthWeather',
-    component: MonthWeather,
   },
   {
     path: '/maps',
-    name: 'Maps',
-    component: Maps,
+    name: 'Maps'
   }
 ]
+
+export const routes: Array<RouteConfig> = routeOptions.map(route => {
+  return {
+    ...route,
+    component: () => import(/* webpackChunkName: "[request]" */ `@/views/${route.name}.vue`)
+  }
+})

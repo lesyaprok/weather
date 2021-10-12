@@ -1,11 +1,9 @@
 <template>
-  <footer class="footer">
     <v-footer color="cyan darken-1" dark>
       <v-col class="white--text text-center font-weight-bold">
         Weather, 2021
       </v-col>
     </v-footer>
-  </footer>
 </template>  
 
 <script lang="ts">

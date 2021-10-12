@@ -10,23 +10,18 @@
           >Weather</v-app-bar-title
         >
         <v-spacer></v-spacer>
-        <v-toolbar-items color="blue" 
-          class="hidden-sm-and-down" 
-          height="100%"
-        >
-          <v-btn
+        <v-toolbar-items color="blue" class="hidden-sm-and-down" height="100%">
+          <router-link
             v-for="item in menuItems"
             :key="item.id"
-            depressed
-            color="cyan darken-1"
-            class="white"
+            class="white--text text-decoration-none d-block"
+            :to="item.path"
           >
-            <router-link
-              class="white--text text-decoration-none"
-              :to="item.path"
-              >{{ item.name }}</router-link
+            <v-btn depressed color="cyan darken-1" class="white"
             >
-          </v-btn>
+              {{ item.name }}
+            </v-btn>
+          </router-link>
         </v-toolbar-items>
       </v-col>
     </v-app-bar>

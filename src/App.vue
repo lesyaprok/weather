@@ -1,7 +1,12 @@
 <template>
   <div id="app">
-    temperature: {{ Math.round(temperature) }}
-    feels like: {{  Math.round(feelsLike) }}
+    <!-- <nav> -->
+      <!-- <router-link to="/">Today</router-link> 
+      <router-link to="/week">Week</router-link>
+      <router-link to="/month">Month</router-link>
+      <router-link to="/maps">Maps</router-link> -->
+      <router-view></router-view>
+    <!-- </nav> -->
   </div>
 </template>
 

@@ -3,14 +3,14 @@
     <v-col class="header__column d-flex white--text font-weight-bold">
       <v-app-bar-nav-icon
         @click="drawer = !drawer"
-        class="header__hide-menu-button hidden-md-and-up"
-      ></v-app-bar-nav-icon>
-      <v-app-bar-title class="header__title d-flex align-center pl-3"
-        >Weather</v-app-bar-title
-      >
+        class="header__hide-menu-button hidden-md-and-up">
+      </v-app-bar-nav-icon>
+      <v-app-bar-title class="header__title d-flex align-center pl-3">
+        Weather
+      </v-app-bar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items
-        class="header__nav hidden-sm-and-down"
+        class="nav hidden-sm-and-down"
         color="blue"
         height="100%"
       >
@@ -25,7 +25,7 @@
       </v-toolbar-items>
     </v-col>
     <v-navigation-drawer
-      class="header__navigation-drawer"
+      class="navigation-drawer"
       v-model="drawer"
       absolute
       left

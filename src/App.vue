@@ -12,8 +12,8 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import Header from "./views/Header/Header.vue";
-import Footer from "./views/Footer/Footer.vue";
+import Header from "./layouts/Header/Header.vue";
+import Footer from "./layouts/Footer/Footer.vue";
 @Component({
   components: {
     Header,

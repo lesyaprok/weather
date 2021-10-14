@@ -13,14 +13,14 @@
         <v-col cols="4">
           <v-img
             class="current-weather-card__img"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Emoji_u2600.svg/800px-Emoji_u2600.svg.png"
+            :src="images.sunIcon"
             alt="Sun"
             width="100"
           >
           </v-img>
         </v-col>
         <v-col cols="6" class="current-weather-card__temperature text-sm-h1 text-h2"
-          >{{ ~~temperature }}&deg;C</v-col
+          >{{ Math.round(temperature) }}&deg;C</v-col
         >
       </v-row>
     </v-card-text>
@@ -30,9 +30,9 @@
     <v-list-item class="current-weather-card__info">
       <v-row align="center">
         <v-col cols="4" class="info__item text-center"
-          >Feels like {{ ~~feels_like }}&deg;C</v-col
+          >Feels like {{ Math.round(feels_like) }}&deg;C</v-col
         >
-        <v-col cols="4" class="info__item text-center">Wind {{ ~~wind }} m/s</v-col>
+        <v-col cols="4" class="info__item text-center">Wind {{ Math.round(wind) }} m/s</v-col>
         <v-col cols="4" class="info__item text-center">Humidity {{ humidity }}%</v-col>
       </v-row>
     </v-list-item>
@@ -40,6 +40,7 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
+import images from "./constants"
 
 export default Vue.extend({
   name: "CurrentWeatherModule",
@@ -51,6 +52,7 @@ export default Vue.extend({
       wind: 0,
       description: "",
       time: "",
+      images,
     };
   },
 });

@@ -10,20 +10,19 @@ export const currentWeatherModule = {
     cityName: 'London',
   },
   mutations: {
-    SET_WEATHER_DATA(state: State, weatherData: Array<Object>) {
+    setWeatherData(state: State, weatherData: Array<Object>) {
       state.weatherData = weatherData;
     },
-    SET_CITY_NAME(state: State, cityName: String) {
+    setCityName(state: State, cityName: String) {
       state.cityName = cityName;
     }
   },
   actions: {
-    GET_CURRENT_WEATHER_DATA({ commit, state }: { commit: Commit, state: State }): any {
+    provideCurrentWeatherData({ commit, state }: { commit: Commit, state: State }): Promise<void> | undefined {
       try {
         return getCurrentWeatherData(state.cityName)
           .then((res: AxiosResponse) => {
-            commit('SET_WEATHER_DATA', res.data);
-            // console.log(res.data);
+            commit('setWeatherData', res.data);
             return res.data;
           })
       } catch (error) {

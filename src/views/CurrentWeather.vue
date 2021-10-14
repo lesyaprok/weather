@@ -35,11 +35,11 @@ export default Vue.extend({
   // },
   methods: {
     ...mapActions({
-      GET_CURRENT_WEATHER_DATA: "currentWeatherModule/GET_CURRENT_WEATHER_DATA",
+      provideCurrentWeatherData: "currentWeatherModule/provideCurrentWeatherData",
     }),
   },
   created() {
-    this.GET_CURRENT_WEATHER_DATA().then((data) => {
+    this.provideCurrentWeatherData().then((data) => {
       this.temperature = data.main.temp;
       this.feelsLike = data.main.feels_like;
       this.humidity = data.main.humidity;

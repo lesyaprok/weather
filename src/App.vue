@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- <nav> -->
-      <!-- <router-link to="/">Today</router-link> 
+      <!-- <router-link to="/">Today</router-link>
       <router-link to="/week">Week</router-link>
       <router-link to="/month">Month</router-link>
       <router-link to="/maps">Maps</router-link> -->
@@ -11,13 +11,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+  import Vue from 'vue';
 
-@Component
-export default class App extends Vue {
-
-}
-
+  export default Vue.extend({
+  name: 'App',
+  });
 </script>
 
 <style lang="scss">

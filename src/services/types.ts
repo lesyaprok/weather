@@ -4,7 +4,7 @@ export interface WeatherData {
   humidity: number,
   description: string,
   windSpeed: number,
-  main: string,
+  // main: string,
   time: string
 }
 

@@ -10,7 +10,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions } from 'vuex';
 import { WeatherData } from '../services/types';
 
 export default Vue.extend({

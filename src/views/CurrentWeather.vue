@@ -9,20 +9,20 @@
   </div>
 </template>
 <script lang="ts">
-import Vue from "vue";
-import { mapActions, mapGetters } from "vuex";
-import { WeatherData } from "@/services/types";
+import Vue from 'vue';
+import { mapActions, mapGetters } from 'vuex';
+import { WeatherData } from '../services/types';
 
 export default Vue.extend({
-  name: "CurrentWeather",
+  name: 'CurrentWeather',
   data(): WeatherData {
     return {
       temperature: 0,
       feelsLike: 0,
       humidity: 0,
       windSpeed: 0,
-      description: "",
-      time: "",
+      description: '',
+      time: '',
     };
   },
   // computed: {
@@ -35,7 +35,7 @@ export default Vue.extend({
   // },
   methods: {
     ...mapActions({
-      provideCurrentWeatherData: "currentWeatherModule/provideCurrentWeatherData",
+      provideCurrentWeatherData: 'currentWeatherModule/provideCurrentWeatherData',
     }),
   },
   created() {

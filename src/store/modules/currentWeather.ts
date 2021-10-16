@@ -23,12 +23,13 @@ const currentWeatherModule = {
       try {
         return getCurrentWeatherData(state.cityName)
           .then((res: AxiosResponse) => {
-            commit('setWeatherData', res.data);
-            // should return nothing, fix it later
-            return res.data;
+            const payload = Object.fromEntries(Object.entries(res.data).filter(([key, value]) => (
+              key === 'main' || key === 'weather' || key === 'wind' ? [key, value] : false
+            )));
+            commit('setWeatherData', payload);
           });
-      } catch (error) {
-        console.log(error);
+      } catch (err) {
+        throw new Error('err');
       }
     },
   },

@@ -5,7 +5,7 @@ export interface WeatherData {
   description: string,
   windSpeed: number,
   // main: string,
-  time: string,
+  // time: string,
 }
 
 export interface Main {
@@ -18,12 +18,15 @@ export interface Wind {
   speed: number,
 }
 
-export interface Description {
-  main: string,
-}
+// export interface Description {
+//   main: string,
+// }
 
 export interface Weather {
-  0: Description,
+  0: {
+    main: string,
+    icon: string
+  }
 }
 
 export interface Data {
@@ -33,6 +36,6 @@ export interface Data {
 }
 
 export interface State {
-  weatherData: Array<Object>,
+  weatherData: WeatherData,
   cityName: String,
 }

@@ -1,7 +1,7 @@
-import axios, { AxiosInstance } from "axios";
+import axios, { AxiosInstance } from 'axios';
 import constants from './constants';
 
-const API_KEY = constants.API_KEY;
+const { API_KEY } = constants;
 
 const commonService: AxiosInstance = axios.create({
   baseURL: `${constants.BASE_URL}/data/2.5/`,
@@ -11,7 +11,7 @@ const commonService: AxiosInstance = axios.create({
   params: {
     appid: API_KEY,
     units: 'metric',
-  }
+  },
 });
 
 export default commonService;

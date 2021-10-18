@@ -1,5 +1,6 @@
-import commonService from "./commonService";
+import { AxiosResponse } from 'axios';
+import commonService from './commonService';
 
-export function getCurrentWeatherData(cityName: String) {
+export default function getCurrentWeatherData(cityName: String): Promise<AxiosResponse> {
   return commonService.get(`weather?q=${cityName}`);
 }

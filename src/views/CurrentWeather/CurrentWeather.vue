@@ -3,7 +3,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
-import CurrentWeatherModule from '@/modules/currentWeatherModule/currentWeatherModule.vue'
+import CurrentWeatherModule from '@/modules/CurrentWeatherModule/CurrentWeatherModule.vue'
 
 export default Vue.extend({
   name: 'CurrentWeather',

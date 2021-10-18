@@ -1,11 +1,11 @@
 <template>
   <div>
     <h2>Current Weather</h2>
-    {{ temperature }}
-    {{ feelsLike }}
-    {{ humidity }}
-    {{ windSpeed }}
-    {{ description }}
+    {{ getWeatherData.temperature }}
+    {{ getWeatherData.feelsLike }}
+    {{ getWeatherData.humidity }}
+    {{ getWeatherData.windSpeed }}
+    {{ getWeatherData.description }}
   </div>
 </template>
 <script lang="ts">
@@ -40,11 +40,11 @@ export default Vue.extend({
   },
   created() {
     this.provideCurrentWeatherData().then(() => {
-      this.temperature = this.weatherData.main.temp;
-      this.feelsLike = this.weatherData.main.feels_like;
-      this.humidity = this.weatherData.main.humidity;
-      this.windSpeed = this.weatherData.wind.speed;
-      this.description = this.weatherData.weather[0].main;
+      // this.temperature = this.weatherData.main.temp;
+      // this.feelsLike = this.weatherData.main.feels_like;
+      // this.humidity = this.weatherData.main.humidity;
+      // this.windSpeed = this.weatherData.wind.speed;
+      // this.description = this.weatherData.weather[0].main;
     });
   },
 });

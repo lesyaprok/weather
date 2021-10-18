@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 import { Commit } from 'vuex';
+import { Data, State } from '../../services/types';
 import getCurrentWeatherData from '../../services/currentWeatherService';
-import { State } from '../../services/types';
 
 const currentWeatherModule = {
   namespaced: true,
@@ -12,6 +12,7 @@ const currentWeatherModule = {
   mutations: {
     setWeatherData(state: State, weatherData: Array<Object>): void {
       state.weatherData = weatherData;
+      console.log(weatherData);
     },
     setCityName(state: State, cityName: String): void {
       state.cityName = cityName;
@@ -23,9 +24,14 @@ const currentWeatherModule = {
       try {
         return getCurrentWeatherData(state.cityName)
           .then((res: AxiosResponse) => {
-            const payload = Object.fromEntries(Object.entries(res.data).filter(([key, value]) => (
-              key === 'main' || key === 'weather' || key === 'wind' ? [key, value] : false
-            )));
+            const { data } = res;
+            const payload: = {
+              temperature: data.main.temp,
+              feelsLike: data.main.feels_like,
+              humidity: data.main.humidity,
+              windSpeed: data.wind.speed,
+              description: data.weather[0].main,
+            };
             commit('setWeatherData', payload);
           });
       } catch (err) {

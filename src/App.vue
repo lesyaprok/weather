@@ -1,23 +1,27 @@
 <template>
-  <div id="app">
-    <!-- <nav> -->
-      <!-- <router-link to="/">Today</router-link>
-      <router-link to="/week">Week</router-link>
-      <router-link to="/month">Month</router-link>
-      <router-link to="/maps">Maps</router-link> -->
-      <router-view></router-view>
-    <!-- </nav> -->
-  </div>
+  <v-app>
+    <Header />
+    <v-main class="teal lighten-5">
+      <v-container>
+        <router-view></router-view>
+      </v-container>
+    </v-main>
+    <Footer />
+  </v-app>
 </template>
 
 <script lang="ts">
-  import Vue from 'vue';
-
-  export default Vue.extend({
+import Vue from 'vue';
+import Header from "./layouts/Header/Header.vue";
+import Footer from "./layouts/Footer/Footer.vue";
+export default Vue.extend({
   name: 'App',
-  });
+  components: {
+    Header,
+    Footer,
+  }
+})
 </script>
 
 <style lang="scss">
-
 </style>

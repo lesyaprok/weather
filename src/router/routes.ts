@@ -21,7 +21,7 @@ const routeOptions = [
 
 const routes: Array<RouteConfig> = routeOptions.map((route) => ({
     ...route,
-    component: () => import(/* webpackChunkName: "[request]" */ `@/views/${route.name}.vue`),
+    component: () => import(/* webpackChunkName: "[request]" */ `@/views/${route.name}/${route.name}.vue`),
 }));
 
 export default routes;

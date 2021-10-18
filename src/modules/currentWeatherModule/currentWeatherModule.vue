@@ -52,7 +52,7 @@ export default Vue.extend({
       wind: 0,
       description: "",
       time: "",
-      images,
+      images,     
     };
   },
 });

@@ -4,11 +4,12 @@
         Weather, 2021
       </v-col>
     </v-footer>
-</template>  
+</template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
+
 export default Vue.extend({
-  name: 'Footer'
-})
+  name: 'Footer',
+});
 </script>

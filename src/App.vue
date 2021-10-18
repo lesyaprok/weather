@@ -12,15 +12,16 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import Header from "./layouts/Header/Header.vue";
-import Footer from "./layouts/Footer/Footer.vue";
+import Header from './layouts/Header/Header.vue';
+import Footer from './layouts/Footer/Footer.vue';
+
 export default Vue.extend({
   name: 'App',
   components: {
     Header,
     Footer,
-  }
-})
+  },
+});
 </script>
 
 <style lang="scss">

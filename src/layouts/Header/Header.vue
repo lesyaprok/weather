@@ -60,11 +60,11 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import menuItems from "./constants";
+import Vue from 'vue';
+import menuItems from './constants';
 
 export default Vue.extend({
-  name: "Header",
+  name: 'Header',
   data() {
     return {
       drawer: false,

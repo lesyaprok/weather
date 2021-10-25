@@ -1,18 +1,25 @@
 import { AxiosResponse } from 'axios';
 import { Commit } from 'vuex';
-import { Data, WeatherData } from '../../services/types';
-import getCurrentWeatherData from '../../services/currentWeatherService';
+import { getGeoData, getCityNameFromCoordinates } from '../../services/geoAPIServices';
+import { WeatherData, Coordinates, ResponseWeatherData, ResponseGeoData } from '../../services/types';
+import getForecast from '../../services/forecastService';
 
 export interface State {
-  weatherData: WeatherData | null,
-  cityName: String,
+  weatherData: WeatherData | null;
+  cityName: String;
+  searchedCity: String;
+  latitude: number;
+  longitude: number;
 }
 
 const currentWeatherModule = {
   namespaced: true,
   state: {
     weatherData: null,
-    cityName: 'Hrodna',
+    cityName: '',
+    searchedCity: '',
+    latitude: 0,
+    longitude: 0,
   } as State,
   mutations: {
     setWeatherData(state: State, weatherData: WeatherData): void {
@@ -21,24 +28,66 @@ const currentWeatherModule = {
     setCityName(state: State, cityName: String): void {
       state.cityName = cityName;
     },
+    setSearchedCity(state: State, searchedCity: String): void {
+      state.searchedCity = searchedCity;
+    },
+    setUserCoordinates(state: State, coords: Coordinates): void {
+      state.latitude = coords.latitude;
+      state.longitude = coords.longitude;
+    },
+    setCoordinates(state: State, coordinates: Coordinates): void {
+      state.latitude = coordinates.latitude;
+      state.longitude = coordinates.longitude;
+    },
   },
   actions: {
+    getUserLocation({ commit, state }: { commit: Commit, state: State }): Promise<void> {
+      return getCityNameFromCoordinates(state.latitude, state.longitude)
+        .then((res: AxiosResponse) => {
+          const responseData: ResponseGeoData = res.data;
+          const cityName: string = responseData.results[0].components.city || '';
+          commit('setCityName', cityName);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getCoordinatesOfCity({ commit, state }: { commit: Commit, state: State }): Promise<void> {
+      return getGeoData(state.searchedCity)
+        .then((res: AxiosResponse) => {
+          const responseData: ResponseGeoData = res.data;
+          const coordinates: Coordinates = {
+            latitude: responseData.results[0].geometry.lat,
+            longitude: responseData.results[0].geometry.lng,
+          };
+          const cityName: string = responseData.results[0].components.city;
+          commit('setCoordinates', coordinates);
+          commit('setCityName', cityName);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
     provideCurrentWeatherData({ commit, state }: { commit: Commit, state: State })
       : Promise<void> | undefined {
-      return getCurrentWeatherData(state.cityName)
+      return getForecast(state.latitude, state.longitude)
         .then((res: AxiosResponse) => {
-          const responseData: Data = res.data;
+          const responseData: ResponseWeatherData = res.data;
           const weatherData: WeatherData = {
-            temperature: responseData.main.temp,
-            feelsLike: responseData.main.feels_like,
-            humidity: responseData.main.humidity,
-            windSpeed: responseData.wind.speed,
-            description: responseData.weather[0].main,
+            temperature: responseData.current.temp,
+            feelsLike: responseData.current.feels_like,
+            humidity: responseData.current.humidity,
+            windSpeed: responseData.current.wind_speed,
+            description: responseData.current.weather[0].main,
+            icon: responseData.current.weather[0].icon,
+            timezone: responseData.timezone,
           };
           commit('setWeatherData', weatherData);
-        }).catch(err => {
-          console.log(err);
         })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
   getters: {
@@ -47,6 +96,12 @@ const currentWeatherModule = {
     },
     getCityName(state: State): String {
       return state.cityName;
+    },
+    getCoordinates(state: State): Coordinates {
+      return {
+        latitude: state.latitude,
+        longitude: state.longitude,
+      };
     },
   },
 };

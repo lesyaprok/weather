@@ -8,19 +8,6 @@ export interface WeatherData {
   timezone: number;
 }
 
-export interface Weather {
-  0: {
-    main: string;
-    icon: string;
-  };
-}
-
-export interface Data {
-  main: any;
-  wind: any;
-  weather: Weather;
-}
-
 export interface Coordinates {
   latitude: number;
   longitude: number;

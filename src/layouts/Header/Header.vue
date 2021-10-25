@@ -3,14 +3,11 @@
     <v-col class="header__column d-flex white--text font-weight-bold">
       <v-app-bar-nav-icon
         @click="drawer = !drawer"
-        class="header__hide-menu-button hidden-md-and-up"
-      >
+        class="header__hide-menu-button hidden-md-and-up">
       </v-app-bar-nav-icon>
       <v-app-bar-title class="header__title d-flex align-center pl-3">
         Weather
       </v-app-bar-title>
-      <v-spacer></v-spacer>
-      <HeaderInput />
       <v-spacer></v-spacer>
       <v-toolbar-items
         class="nav hidden-sm-and-down"
@@ -65,13 +62,9 @@
 <script lang="ts">
 import Vue from 'vue';
 import menuItems from './constants';
-import HeaderInput from './HeaderInput.vue';
 
 export default Vue.extend({
   name: 'Header',
-  components: {
-    HeaderInput,
-  },
   data() {
     return {
       drawer: false,

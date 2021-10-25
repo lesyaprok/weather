@@ -26,6 +26,7 @@
 import Vue from 'vue';
 import { mapActions, mapGetters } from 'vuex';
 import WeekCard from './WeekCard.vue';
+import { WeekWeatherData } from '../../services/types';
 
 export default Vue.extend({
   name: 'WeekForecastModule',
@@ -43,10 +44,10 @@ export default Vue.extend({
       getCoordinates: 'currentWeatherModule/getCoordinates',
       getCityName: 'currentWeatherModule/getCityName',
     }),
-    cityName() {
+    cityName(): string {
       return this.getCityName;
     },
-    weekWeatherData() {
+    weekWeatherData(): WeekWeatherData {
       return this.getWeekWeatherData;
     },
   },

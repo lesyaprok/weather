@@ -17,14 +17,12 @@ export interface Wind {
 }
 
 export interface Weather {
-  0: {
     main: string,
     icon: string
-  }
 }
 
 export interface Data {
   main: Main,
   wind: Wind,
-  weather: Weather,
+  weather: Weather[],
 }

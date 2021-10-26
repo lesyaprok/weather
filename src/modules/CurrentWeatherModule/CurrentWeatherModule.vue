@@ -71,19 +71,19 @@ export default Vue.extend({
     //   return this.getWeatherData;
     // },
     temperature(): string {
-      return `${Math.round(this.getWeatherData.temperature) || 0 }\u00B0C`;
+      return `${Math.round(this.getWeatherData?.temperature) || 0 }\u00B0C`;
     },
     description(): string {
-      return this.getWeatherData.description || '';
+      return this.getWeatherData?.description || '';
     },
     feelsLike(): string {
-      return `Feels like ${Math.round(this.getWeatherData.feelsLike) || 0 }\u00B0C`;
+      return `Feels like ${Math.round(this.getWeatherData?.feelsLike) || 0 }\u00B0C`;
     },
     windSpeed(): string {
-      return `Wind ${Math.round(this.getWeatherData.windSpeed) || 0} m/s`;
+      return `Wind ${Math.round(this.getWeatherData?.windSpeed) || 0} m/s`;
     },
     humidity(): string {
-      return `Humidity ${this.getWeatherData.humidity || 0 } %`;
+      return `Humidity ${this.getWeatherData?.humidity || 0 } %`;
     },
 
   },

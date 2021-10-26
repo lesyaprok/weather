@@ -4,16 +4,16 @@ import { Data, WeatherData } from '../../services/types';
 import getCurrentWeatherData from '../../services/currentWeatherService';
 
 export interface State {
-  weatherData: WeatherData,
+  weatherData: WeatherData | null,
   cityName: String,
 }
 
 const currentWeatherModule = {
   namespaced: true,
   state: {
-    weatherData: [],
+    weatherData: null,
     cityName: 'Hrodna',
-  },
+  } as State,
   mutations: {
     setWeatherData(state: State, weatherData: WeatherData): void {
       state.weatherData = weatherData;
@@ -42,7 +42,7 @@ const currentWeatherModule = {
     },
   },
   getters: {
-    getWeatherData(state: State): WeatherData {
+    getWeatherData(state: State): WeatherData | null {
       return state.weatherData;
     },
     getCityName(state: State): String {

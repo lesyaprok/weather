@@ -1,4 +1,4 @@
-import { RouteConfig } from "vue-router";
+import { RouteConfig } from 'vue-router';
 
 const routeOptions = [
   {
@@ -15,13 +15,13 @@ const routeOptions = [
   },
   {
     path: '/maps',
-    name: 'Maps'
-  }
-]
+    name: 'Maps',
+  },
+];
 
-export const routes: Array<RouteConfig> = routeOptions.map(route => {
-  return {
+const routes: Array<RouteConfig> = routeOptions.map((route) => ({
     ...route,
-    component: () => import(/* webpackChunkName: "[request]" */ `@/views/Pages/${route.name}.vue`)
-  }
-})
+    component: () => import(/* webpackChunkName: "[request]" */ `@/views/${route.name}/${route.name}.vue`),
+}));
+
+export default routes;

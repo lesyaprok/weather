@@ -11,16 +11,17 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import Header from "./layouts/Header/Header.vue";
-import Footer from "./layouts/Footer/Footer.vue";
-@Component({
+import Vue from 'vue';
+import Header from './layouts/Header/Header.vue';
+import Footer from './layouts/Footer/Footer.vue';
+
+export default Vue.extend({
+  name: 'App',
   components: {
     Header,
     Footer,
   },
-})
-export default class App extends Vue {}
+});
 </script>
 
 <style lang="scss">

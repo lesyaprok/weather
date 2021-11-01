@@ -20,7 +20,7 @@
           <v-img
             class="current-weather-card__img"
             :src="
-              require(`../../assets/weatherIcons/${weatherData.icon ||
+              require(`../../assets/weatherIcons/${getWeatherData.icon ||
                 '01d'}.png`)
             "
             alt="Sun"
@@ -42,7 +42,7 @@
     >
       {{ description }}
     </v-card-text>
-    <v-list-item class="current-weather-card__info">
+    <v-list-item class="current-weather-card__info info">
       <v-row align="center">
         <v-col cols="4" class="info__item text-center">
           {{ feelsLike }}
@@ -61,7 +61,6 @@
 import Vue from 'vue';
 import { mapActions, mapGetters, mapMutations } from 'vuex';
 import moment from 'moment-timezone';
-import { WeatherData } from '../../services/types';
 
 export default Vue.extend({
   name: 'CurrentWeatherModule',
@@ -77,9 +76,6 @@ export default Vue.extend({
     }),
     cityName(): string {
       return this.getCityName;
-    },
-    weatherData(): WeatherData {
-      return this.getWeatherData;
     },
     temperature(): string {
       return `${Math.round(this.getWeatherData?.temperature) || 0 }\u00B0C`;
@@ -131,7 +127,6 @@ export default Vue.extend({
         };
       }
       const error = () => ({ latitude: 22, longitude: 58 });
-
       navigator.geolocation.getCurrentPosition(success, error);
     },
   },
@@ -143,10 +138,8 @@ export default Vue.extend({
       });
       this.getUserLocation();
       this.provideCurrentWeatherData();
+      this.setCurrentTime();
     });
-  },
-  mounted() {
-    this.setCurrentTime();
   },
 });
 </script>

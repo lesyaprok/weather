@@ -1,25 +1,30 @@
 <template>
   <section class="hourly-forecast">
-    <v-slide-group show-arrays class="hourly-forecast__cards pa-4 my-10">
+    <v-slide-group show-arrays class="hourly-forecast__cards cards pa-4 my-10">
       <v-card
-        class="cards__item d-flex justify-center align-center flex-column px-4 pb-4"
-        v-for="item in hourlyData"
+        class="
+          cards__item   
+          item
+          d-flex
+          justify-center
+          align-center
+          flex-column
+          px-4
+          pb-4
+        "
+        v-for="(item, index) in getHourlyData"
         :key="item.id"
       >
-        <v-card-title class="item__hour">{{
-          `${new Date(item.timestamp * 1000).getHours()}:00`
-        }}</v-card-title>
+        <v-card-title class="item__hour">{{ hour[index] }}</v-card-title>
         <v-img
           class="item__img"
           :src="require(`../../assets/weatherIcons/${item.icon || '01d'}.png`)"
           width="40"
         >
         </v-img>
-        <v-card-text class="item__temp" align="center">{{
-          item.temperature >= 0
-            ? `+${Math.round(item.temperature)}`
-            : Math.round(item.temperature)
-        }}</v-card-text>
+        <v-card-text class="item__temp" align="center">
+          {{ temperature[index] }}
+        </v-card-text>
       </v-card>
     </v-slide-group>
   </section>
@@ -39,8 +44,20 @@ export default Vue.extend({
     coordinates(): Coordinates {
       return this.getCoordinates;
     },
-    hourlyData(): HourlyWeatherData {
-      return this.getHourlyData;
+    temperature(): Array<number | string> {
+      return this.getHourlyData.map((hourlyWeatherItem: HourlyWeatherData) => {
+        const temp = Math.round(hourlyWeatherItem.temperature);
+
+        if (hourlyWeatherItem.temperature >= 0) {
+          return `+${temp}`;
+        }
+          return temp;
+      });
+    },
+    hour(): Array<string> {
+      return this.getHourlyData.map(
+        (hourlyWeatherItem: HourlyWeatherData) => `${new Date(hourlyWeatherItem.timestamp * 1000).getHours()}:00`,
+      );
     },
   },
   methods: {

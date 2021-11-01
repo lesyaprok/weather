@@ -1,40 +1,50 @@
 <template>
-  <div class="header__search">
-    <input
-      class="search__input"
-      type="text"
-      @keyup.enter="searchWeatherForCity"
+  <div class="header__input input">
+    <v-text-field
+      class="input__search-input align-center"
+      light
+      solo
+      hide-details
       v-model="searchedCity"
+      @keyup.enter="searchWeatherForCity"
+      @blur="searchWeatherForCity"
+      @click:append="searchWeatherForCity"
       placeholder="Find a city..."
-    />
-    <v-icon class="search__icon" @click="searchWeatherForCity">
-      mdi-magnify
-    </v-icon>
+      append-icon="mdi-magnify"
+    >
+    </v-text-field>
   </div>
 </template>
 <script lang="ts">
-import Vue from "vue";
-import { mapActions, mapMutations } from "vuex";
+import Vue from 'vue';
+import { mapActions, mapMutations, mapGetters } from 'vuex';
 
 export default Vue.extend({
-  name: "HeaderInput",
-  data() {
-    return {
-      searchedCity: "",
-    };
+  name: 'HeaderInput',
+  computed: {
+    ...mapGetters({
+      getSearchedCity: 'currentWeatherModule/getSearchedCity',
+    }),
+    searchedCity: {
+      set(value): void {
+        this.setSearchedCity(value);
+      },
+      get(): string {
+        return this.getSearchedCity;
+      },
+    },
   },
   methods: {
     ...mapMutations({
-      setSearchedCity: "currentWeatherModule/setSearchedCity",
+      setSearchedCity: 'currentWeatherModule/setSearchedCity',
     }),
     ...mapActions({
       provideCurrentWeatherData:
-        "currentWeatherModule/provideCurrentWeatherData",
-      getCoordinatesOfCity: "currentWeatherModule/getCoordinatesOfCity",
+        'currentWeatherModule/provideCurrentWeatherData',
+      getCoordinatesOfCity: 'currentWeatherModule/getCoordinatesOfCity',
     }),
     searchWeatherForCity() {
       if (this.searchedCity) {
-        this.setSearchedCity(this.searchedCity);
         this.getCoordinatesOfCity();
       }
     },
@@ -42,19 +52,4 @@ export default Vue.extend({
 });
 </script>
 <style lang="scss" scoped>
-.header {
-  &__search {
-    display: flex;
-  }
-}
-.search {
-  &__input {
-    margin-right: 10px;
-    padding: 7px 10px;
-    background: #fff;
-    outline: none;
-    border-radius: 5px;
-    caret-color: #000;
-  }
-}
 </style>

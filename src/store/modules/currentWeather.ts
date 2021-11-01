@@ -48,6 +48,9 @@ const currentWeatherModule = {
     getCityName(state: State): String {
       return state.cityName;
     },
+    getSearchedCityName(state: State): String {
+      return state.searchedCity;
+    }
   },
 };
 

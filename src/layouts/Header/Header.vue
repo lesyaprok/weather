@@ -13,7 +13,7 @@
       <HeaderInput />
       <v-spacer></v-spacer>
       <v-toolbar-items
-        class="nav hidden-sm-and-down"
+        class="header__nav nav hidden-sm-and-down align-center"
         color="blue"
         height="100%"
       >
@@ -28,7 +28,7 @@
       </v-toolbar-items>
     </v-col>
     <v-navigation-drawer
-      class="navigation-drawer"
+      class="header__navigation-drawer navigation-drawer"
       v-model="drawer"
       absolute
       left

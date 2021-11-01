@@ -24,17 +24,17 @@ const weekForecastModule = {
     provideWeekForecastData({ commit }: { commit: Commit }, payload: Coordinates): Promise<void> {
       return getForecast(payload.latitude, payload.longitude).then((res) => {
         const responseData: ResponseWeatherData = res.data;
-        const weekWeatherData: WeekWeatherData[] = responseData.daily.map((e) => ({
-            temperature: {
-              day: e.temp.day,
-              night: e.temp.night,
-            },
-            description: e.weather[0].description,
-            icon: e.weather[0].icon,
-            timestamp: e.dt,
-            wind: e.wind_speed,
-          }));
-          commit('setWeekWeatherData', weekWeatherData);
+        const weekWeatherData: WeekWeatherData[] = responseData.daily.map((dailyItem) => ({
+          temperature: {
+            day: dailyItem.temp.day,
+            night: dailyItem.temp.night,
+          },
+          description: dailyItem.weather[0].description,
+          icon: dailyItem.weather[0].icon,
+          timestamp: dailyItem.dt,
+          wind: dailyItem.wind_speed,
+        }));
+        commit('setWeekWeatherData', weekWeatherData);
       })
         .catch((err) => {
           console.log(err);

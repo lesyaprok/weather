@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 import { Commit } from 'vuex';
 import { getGeoData, getCityNameFromCoordinates } from '../../services/geoAPIServices';
-import { WeatherData, Coordinates, ResponseWeatherData, ResponseGeoData } from '../../services/types';
+import { WeatherData, Coordinates, ResponseWeatherData, ResponseGeoData, Current } from '../../services/types';
 import getForecast from '../../services/forecastService';
 
 export interface State {
@@ -74,14 +74,15 @@ const currentWeatherModule = {
       return getForecast(state.latitude, state.longitude)
         .then((res: AxiosResponse) => {
           const responseData: ResponseWeatherData = res.data;
+          const { current, timezone }: {current: Current, timezone: string} = responseData;
           const weatherData: WeatherData = {
-            temperature: responseData.current.temp,
-            feelsLike: responseData.current.feels_like,
-            humidity: responseData.current.humidity,
-            windSpeed: responseData.current.wind_speed,
-            description: responseData.current.weather[0].main,
-            icon: responseData.current.weather[0].icon,
-            timezone: responseData.timezone,
+            temperature: current.temp,
+            feelsLike: current.feels_like,
+            humidity: current.humidity,
+            windSpeed: current.wind_speed,
+            description: current.weather[0].description,
+            icon: current.weather[0].icon,
+            timezone: timezone,
           };
           commit('setWeatherData', weatherData);
         })

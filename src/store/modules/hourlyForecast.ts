@@ -3,7 +3,7 @@ import { Commit } from 'vuex';
 import { Coordinates, HourlyWeatherData, ResponseWeatherData } from '../../services/types';
 import getForecast from '../../services/forecastService';
 
-interface State{
+interface State {
   hourlyData: HourlyWeatherData | null;
 }
 
@@ -22,11 +22,11 @@ const hourlyForecastModule = {
       return getForecast(payload.latitude, payload.longitude)
         .then((res: AxiosResponse) => {
           const responseData: ResponseWeatherData = res.data;
-          const hourlyData: HourlyWeatherData[] = responseData.hourly.map((e) => ({
-              timestamp: e.dt,
-              temperature: e.temp,
-              icon: e.weather[0].icon,
-            }));
+          const hourlyData: HourlyWeatherData[] = responseData.hourly.map((hourlyWeatherItem) => ({
+            timestamp: hourlyWeatherItem.dt,
+            temperature: hourlyWeatherItem.temp,
+            icon: hourlyWeatherItem.weather[0].icon,
+          }));
           commit('setHourlyData', hourlyData);
         })
         .catch((err) => {

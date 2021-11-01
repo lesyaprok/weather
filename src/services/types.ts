@@ -9,8 +9,17 @@ export interface WeatherData {
 }
 
 export interface Weather {
-  main: string;
+  description: string;
   icon: string;
+}
+
+export interface Icon {
+  icon: string;
+}
+
+export interface Temperature {
+  day: number;
+  night: number;
 }
 
 export interface Current {
@@ -24,25 +33,13 @@ export interface Current {
 export interface Hourly {
   dt: number;
   temp: number;
-  weather: [
-    {
-      icon: string;
-    }
-  ];
+  weather: Icon[];
 }
 
 export interface Daily {
   dt: number;
-  temp: {
-    day: number;
-    night: number;
-  };
-  weather: [
-    {
-      description: string;
-      icon: string;
-    }
-  ];
+  temp: Temperature;
+  weather: Weather[];
   wind_speed: number;
 }
 
@@ -68,10 +65,7 @@ export interface ResponseGeoData {
 }
 
 export interface WeekWeatherData {
-  temperature: {
-    day: number;
-    night: number;
-  };
+  temperature: Temperature;
   description: string;
   icon: string;
   timestamp: number;

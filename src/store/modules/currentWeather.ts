@@ -74,7 +74,7 @@ const currentWeatherModule = {
       return getForecast(state.latitude, state.longitude)
         .then((res: AxiosResponse) => {
           const responseData: ResponseWeatherData = res.data;
-          const { current, timezone }: {current: Current, timezone: string} = responseData;
+          const { current, timezone } = responseData;
           const weatherData: WeatherData = {
             temperature: current.temp,
             feelsLike: current.feels_like,
@@ -104,6 +104,9 @@ const currentWeatherModule = {
         longitude: state.longitude,
       };
     },
+    getSearchedCityName(state: State): String {
+      return state.searchedCity;
+    }
   },
 };
 
